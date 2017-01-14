@@ -7,8 +7,8 @@ GETTING STARTED
 
 1. Get LibTomMath and LibTomCrypt
 
-   git clone https://github.com/TaleTN/libtommath.git
-   git clone https://github.com/TaleTN/libtomcrypt.git
+   git clone -b develop https://github.com/TaleTN/libtommath.git
+   git clone -b develop https://github.com/TaleTN/libtomcrypt.git
 
 2. Patch LibTomCrypt
 
