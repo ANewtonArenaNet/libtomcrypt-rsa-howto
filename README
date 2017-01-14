@@ -10,27 +10,23 @@ GETTING STARTED
    git clone -b develop https://github.com/TaleTN/libtommath.git
    git clone -b develop https://github.com/TaleTN/libtomcrypt.git
 
-2. Patch LibTomCrypt
-
-   [n]make [-f makefile.msvc] patch
-
-3. Remove unused source files (optional)
+2. Remove unused source files (optional)
 
    perl remove_unused.pl --force
 
-4. Build LibTomMath and LibTomCrypt
+3. Build LibTomMath and LibTomCrypt
 
    [n]make [-f makefile.msvc]
 
-5. Generate public/private key pair
+4. Generate public/private key pair
 
    [n]make [-f makefile.msvc] key
 
-6. Run sign and verify examples
+5. Run sign and verify examples
 
    [n]make [-f makefile.msvc] test
 
-7. Have fun!
+6. Have fun!
 
 FILES IN THIS DISTRIBUTION
 
