@@ -46,12 +46,13 @@ int main(int argc, char** argv)
 	if (err != CRYPT_OK) return error(err, &key);
 
 	// Register hash algorithm.
-	const ltc_hash_descriptor& hash_desc = sha512_desc;
+	const ltc_hash_descriptor& hash_desc = sha256_desc;
 	const int hash_idx = register_hash(&hash_desc);
 	if (hash_idx < 0) return error(CRYPT_INVALID_HASH, &key);
 
 	// Hash message.
-	unsigned char hash[64];
+    const int HASHLEN = 64;
+	unsigned char hash[HASHLEN];
 	hash_state md;
 	hash_desc.init(&md);
 	hash_desc.process(&md, (const unsigned char*)msg, (unsigned long)strlen(msg));

@@ -28,10 +28,10 @@ int main(int argc, char** argv)
 
     unsigned long buftmplen = MAX_RSA_SIZE*5/8;
     unsigned char buftmp[MAX_RSA_SIZE*5/8];
-    printf("key len: %lu\n", buftmplen);
+    fprintf(stderr, "key len: %lu\n", buftmplen);
     base64_encode(buf, buflen, buftmp, &buftmplen);
-    printf("key len: %lu\n", buftmplen);
-    printf("key: %s\n", buftmp);
+    fprintf(stderr, "key len: %lu\n", buftmplen);
+    fprintf(stderr, "key: %s\n", buftmp);
 
 	// Import DER key.
 	rsa_key key;
@@ -53,10 +53,10 @@ int main(int argc, char** argv)
 
     buftmplen = MAX_RSA_SIZE*5/8;
     memset(buftmp, 0, buftmplen);
-    printf("len: %lu\n", buftmplen);
+    fprintf(stderr, "len: %lu\n", buftmplen);
     base64_encode(hash, HASHLEN, buftmp, &buftmplen);
-    printf("len: %lu\n", buftmplen);
-    printf("sha256: %s\n", buftmp);
+    fprintf(stderr, "len: %lu\n", buftmplen);
+    fprintf(stderr, "sha256: %s\n", buftmp);
 
 	// Define padding scheme.
 	const int padding = LTC_PKCS_1_V1_5;

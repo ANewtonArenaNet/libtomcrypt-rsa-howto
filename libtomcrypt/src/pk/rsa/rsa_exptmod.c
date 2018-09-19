@@ -40,7 +40,7 @@ int rsa_exptmod(const unsigned char *in,   unsigned long inlen,
    unsigned long x;
    int           err;
 
-   printf("rsa_me\n");
+   fprintf(stderr, "rsa_me\n");
 
    LTC_ARGCHK(in     != NULL);
    LTC_ARGCHK(out    != NULL);

@@ -126,8 +126,8 @@ int rsa_sign_hash_ex(const unsigned char *in,       unsigned long  inlen,
   unsigned long buftmplen = MAX_RSA_SIZE*5/8;
   unsigned char buftmp[MAX_RSA_SIZE*5/8];
   base64_encode(out, x, buftmp, &buftmplen);
-  printf("Len: %lu\n", buftmplen);
-  printf("Padded bytes: %*s\n", buftmplen, buftmp);
+  fprintf(stderr, "Len: %lu\n", buftmplen);
+  fprintf(stderr, "Padded bytes: %s\n", buftmp);
 
   /* RSA encode it */
   return ltc_mp.rsa_me(out, x, out, outlen, PK_PRIVATE, key);
