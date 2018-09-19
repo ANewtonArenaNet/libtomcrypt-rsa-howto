@@ -26,22 +26,37 @@ int main(int argc, char** argv)
 	fclose(f);
 	if (!buflen) return error(CRYPT_ERROR);
 
+    unsigned long buftmplen = MAX_RSA_SIZE*5/8;
+    unsigned char buftmp[MAX_RSA_SIZE*5/8];
+    printf("key len: %lu\n", buftmplen);
+    base64_encode(buf, buflen, buftmp, &buftmplen);
+    printf("key len: %lu\n", buftmplen);
+    printf("key: %s\n", buftmp);
+
 	// Import DER key.
 	rsa_key key;
 	int err = rsa_import(buf, buflen, &key);
 	if (err != CRYPT_OK) return error(err);
 
 	// Register hash algorithm.
-	const ltc_hash_descriptor& hash_desc = sha512_desc;
+	const ltc_hash_descriptor& hash_desc = sha256_desc;
 	const int hash_idx = register_hash(&hash_desc);
 	if (hash_idx < 0) return error(CRYPT_INVALID_HASH, &key);
 
 	// Hash message.
-	unsigned char hash[64];
+    const int HASHLEN = 32;
+	unsigned char hash[HASHLEN];
 	hash_state md;
 	hash_desc.init(&md);
 	hash_desc.process(&md, (const unsigned char*)msg, (unsigned long)strlen(msg));
 	hash_desc.done(&md, hash);
+
+    buftmplen = MAX_RSA_SIZE*5/8;
+    memset(buftmp, 0, buftmplen);
+    printf("len: %lu\n", buftmplen);
+    base64_encode(hash, HASHLEN, buftmp, &buftmplen);
+    printf("len: %lu\n", buftmplen);
+    printf("sha256: %s\n", buftmp);
 
 	// Define padding scheme.
 	const int padding = LTC_PKCS_1_V1_5;
